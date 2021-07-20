@@ -1,31 +1,43 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-signin"}) do |f| %>
+  <h2 class= "text-center">Sign up</h2>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+
     <%= f.input :first_name,
                 required: true,
-                autofocus: true %>
+                autofocus: true,
+                label: false,
+                placeholder: "Ingresa tu nombre" %>
     <%= f.input :last_name,
-                required: true %>
+                required: true,
+                label: false,
+                placeholder: "Ingresa tus apellidos" %>
     <%= f.input :rfc,
-                required: true %>
+                required: true,
+                label: false,
+                placeholder: "Ingresa tu RFC" %>
     <%= f.input :email,
                 required: true,
+                label: false,
+                placeholder: "Ingresa tu correo electrónico",
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                label: false,
+                placeholder: "Ingresa tu contraseña",
+                
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: true,
+                label: false,
+                placeholder: "Confirma tu contraseña",
                 input_html: { autocomplete: "new-password" } %>
-  </div>
 
-  <div class="form-actions">
+
+<div class="d-grid gap-2">
     <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
-  </div>
+</div>
+
 <% end %>
 
 
