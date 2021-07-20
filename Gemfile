@@ -54,3 +54,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.0.1'
 gem 'font-awesome-sass', '~> 5.15.1'
+gem 'simple_form'
