@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center">
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2><i class="fab fa-bity"></i> Bitty</h2>
           <p>Tu administrador de confianza</p>
@@ -10,9 +10,12 @@
 
 <div class="row justify-content-md-center">
 	 <div class="col-md-2">
-	 	<%= link_to 'Registar sucursal', '#', class: "btn btn-primary" %>
-		<%= link_to 'Registar empleado', '#', class: "btn btn-primary" %>
+	 	<div class="d-grid gap-2">
+  			<%= link_to 'Registar sucursal', new_office_path, class: "btn btn-primary" %>
+			<%= link_to 'Registar empleado', new_employee_path, class: "btn btn-primary" %>
+		</div>
 	 </div>
+
 	 <div class="col-md-6">
 	 	<table class="table table-dark table-hover">
 			<thead>
@@ -23,11 +26,14 @@
 				</tr>
 			</thead>
 			<tbody>	
+				<% @data.each do |data| %>
 				<tr>
-					<td>Independencia</td>
-					<td>12</td>
-					<td><i class="far fa-edit"></i></td>
+					<td><%= data.name_office %></td>
+					<td><%= data.count_employees %></td>
+					<td><%= link_to '<i class="far fa-eye"></i>'.html_safe, '#' %>
+						<%= link_to '<i class="far fa-edit"></i>'.html_safe, edit_office_path(data.id_offices) %></td>
 				</tr>	
+				<% end %>
 			</tbody>
 		</table>
 	 </div>
