@@ -5,12 +5,17 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :last_name %>
-    <%= f.input :rfc %>
+
+    <% unless @employee.persisted? %>
+      <%# Will only show if @user has been saved to the database %>
+      <%= f.input :rfc %>
+    <% end %>
+
     <%= f.input :job_title %>
     <%= f.association :office %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
