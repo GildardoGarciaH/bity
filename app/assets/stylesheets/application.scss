@@ -1,3 +1,14 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+body, html {
+  height: 100vh;
+}
+
+body {
+    background-image: url(asset_path('background.jpg'));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

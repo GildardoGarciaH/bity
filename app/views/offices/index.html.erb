@@ -1,43 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="template rounded">
+  <p id="notice"><%= notice %></p>
+ 
+    <div class="row justify-content-md-center">
+      <h1 class="text-center mt-5 mb-5">Sucursales</h1>
+       <div class="col-md-2">
+        <div class="d-grid gap-2">
+            <%= link_to 'Registar sucursal', new_office_path, class: "btn btn-primary" %>
+            <%= link_to 'Registar empleado', new_employee_path, class: "btn btn-primary" %>
+        </div>
+       </div>
 
-<h1>Offices</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Street</th>
-      <th>Ext number</th>
-      <th>Int number</th>
-      <th>Neighborhood</th>
-      <th>Postal code</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @offices.each do |office| %>
-      <tr>
-        <td><%= office.name %></td>
-        <td><%= office.street %></td>
-        <td><%= office.ext_number %></td>
-        <td><%= office.int_number %></td>
-        <td><%= office.neighborhood %></td>
-        <td><%= office.postal_code %></td>
-        <td><%= office.city %></td>
-        <td><%= office.country %></td>
-        <td><%= office.user_id %></td>
-        <td><%= link_to 'Show', office %></td>
-        <td><%= link_to 'Edit', edit_office_path(office) %></td>
-        <td><%= link_to 'Destroy', office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Office', new_office_path %>
+       <div class="col-md-7">
+        <% unless @db.nil? %>
+          <table class="table table-light table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Sucursal</th>
+                <th>No. de Empleados</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody> 
+              <% @data.each do |data| %>
+              <tr>
+                <td><%= data.name_office %></td>
+                <td><%= data.count_employees %></td>
+                <td><%= link_to '<i class="far fa-eye"></i>'.html_safe, '#' %>
+                  <%= link_to '<i class="far fa-edit"></i>'.html_safe, edit_office_path(data.id_offices) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="border rounded">
+            <p class="text-center pt-5 pb-5">Aún no tienes sucursales registradas.</p>
+          </div>
+        <% end %>
+       </div>
+    </div>
+</div>

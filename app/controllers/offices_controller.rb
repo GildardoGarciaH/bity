@@ -5,6 +5,13 @@ class OfficesController < ApplicationController
   # GET /offices or /offices.json
   def index
     @offices = current_user.offices
+
+    @db = Office.where("user_id=?", current_user.id).first
+
+    @data = Office.left_outer_joins(:employees)   
+             .select('offices.id as id_offices, offices.name as name_office, count("employees.id") as count_employees') 
+             .where("user_id=?", current_user.id) 
+             .group('offices.name')
   end
 
   # GET /offices/1 or /offices/1.json
