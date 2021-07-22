@@ -4,7 +4,9 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.joins(:office)   
+             .select('employees.*')
+             .where("offices.user_id=?", current_user.id)
   end
 
   # GET /employees/1 or /employees/1.json
