@@ -2,18 +2,18 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <%= f.input :name %>
-  <%= f.input :last_name %>
+  <%= f.input :name, label: "Nombre", required: true %>
+  <%= f.input :last_name, label: "Apellido", required: true %>
 
   <%# Will only show if @user has been saved to the database %>
   <% unless @employee.persisted? %>  
-    <%= f.input :rfc %>
+    <%= f.input :rfc, label: "RFC", required: true %>
   <% end %>
 
-  <%= f.input :job_title %>
-  <%= f.association :office %>
+  <%= f.input :job_title, label: "Puesto", required: true %>
+  <%= f.association :office, label: "Sucursal", :as => :collection_select, collection: Office.where("user_id=?", current_user.id), required: true %>
   
   <div class="d-grid gap-2 mt-3">
-    <%= f.button :submit, class: "btn btn-primary btn-lg" %>
+    <%= f.button :submit, "Aceptar", class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>
