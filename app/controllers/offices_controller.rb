@@ -6,12 +6,10 @@ class OfficesController < ApplicationController
   def index
     @offices = current_user.offices
 
-    @db = Office.where("user_id=?", current_user.id).first
-
-    @data = Office.left_outer_joins(:employees)   
-             .select('offices.id as id_offices, offices.name as name_office, count("employees.id") as count_employees') 
-             .where("user_id=?", current_user.id) 
-             .group('offices.name')
+    @data = Office.select('offices.id AS id_office, offices.name AS name_office, count(employees.office_id) AS count_employees')
+            .joins('LEFT JOIN employees ON office_id = offices.id')
+            .where('user_id=?', current_user.id)
+            .group('offices.name')    
   end
 
   # GET /offices/1 or /offices/1.json
@@ -25,6 +23,7 @@ class OfficesController < ApplicationController
 
   # GET /offices/1/edit
   def edit
+    @employees = Employee.where("office_id=?", params[:id])
   end
 
   # POST /offices or /offices.json
@@ -33,7 +32,7 @@ class OfficesController < ApplicationController
 
     respond_to do |format|
       if @office.save
-        format.html { redirect_to @office, notice: "Office was successfully created." }
+        format.html { redirect_to edit_office_path(@office.id), notice: "Office was successfully created." }
         format.json { render :show, status: :created, location: @office }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +45,7 @@ class OfficesController < ApplicationController
   def update
     respond_to do |format|
       if @office.update(office_params)
-        format.html { redirect_to @office, notice: "Office was successfully updated." }
+        format.html { redirect_to edit_office_path(@office), notice: "Office was successfully updated." }
         format.json { render :show, status: :ok, location: @office }
       else
         format.html { render :edit, status: :unprocessable_entity }

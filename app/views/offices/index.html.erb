@@ -1,32 +1,29 @@
 <div class="template rounded">
-  <p id="notice"><%= notice %></p>
- 
     <div class="row justify-content-md-center">
       <h1 class="text-center mt-5 mb-5">Sucursales</h1>
        <div class="col-md-2">
         <div class="d-grid gap-2">
-            <%= link_to 'Registar sucursal', new_office_path, class: "btn btn-primary" %>
-            <%= link_to 'Registar empleado', new_employee_path, class: "btn btn-primary" %>
+            <%= link_to 'Registrar sucursal', new_office_path, class: "text-button btn btn-primary btn-lg" %>
+            <%= link_to 'Registrar empleado', new_employee_path, class: "text-button btn btn-primary btn-lg" %>
         </div>
        </div>
 
        <div class="col-md-7">
-        <% unless @db.nil? %>
-          <table class="table table-light table-striped table-bordered">
+        <% unless @data.length == 0 %>
+          <table class="table table-light table-striped table-bordered text-table">
             <thead>
               <tr>
-                <th>Sucursal</th>
-                <th>No. de Empleados</th>
-                <th>Opciones</th>
+                <th class="text-center">Sucursal</th>
+                <th class="text-center">No. de Empleados</th>
+                <th class="text-center">Opciones</th>
               </tr>
             </thead>
             <tbody> 
               <% @data.each do |data| %>
               <tr>
-                <td><%= data.name_office %></td>
-                <td><%= data.count_employees %></td>
-                <td><%= link_to '<i class="far fa-eye"></i>'.html_safe, '#' %>
-                  <%= link_to '<i class="far fa-edit"></i>'.html_safe, edit_office_path(data.id_offices) %></td>
+                <td><%= data.name_office %></td>        
+                <td class="text-center"><%= data.count_employees %></td>   
+                <td class="text-center"><%= link_to '<i class="far fa-edit"></i>'.html_safe, edit_office_path(data.id_office) %></td>
               </tr>
               <% end %>
             </tbody>
