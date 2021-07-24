@@ -2,23 +2,24 @@
     <div class="col-md-6">
         <div class="h-100 p-5 text-black bg-light border-4 border-primary rounded">
             <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
-                <h2 class= "text-center">Iniciar sesión</h2>
+                <h2 class= "text-center mb-4">Iniciar sesión</h2>
 
                 <%= f.input :email,
-                            required: false,
+                            required: true,
                             label: false,
                             autofocus: true,
                             placeholder: "Ingresa tu correo electrónico",
-                            input_html: { autocomplete: "email" } %>
+                            input_html: { autocomplete: "email" }
+                             %>
 
                 <%= f.input :password,
-                            required: false,
+                            required: true,
                             label: false,
                             placeholder: "Ingresa tu contraseña",
                             input_html: { autocomplete: "current-password" } %>
 
                 <div class="d-grid gap-2">
-                    <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %>
+                    <%= f.button :submit, "Aceptar", class: "btn btn-primary btn-lg" %>
                 </div>
             <% end %>
         </div>

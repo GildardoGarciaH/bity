@@ -1,43 +1,46 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-signin"}) do |f| %>
-  <h2 class= "text-center">Sign up</h2>
-  <%= f.error_notification %>
+<div class="welcome row justify-content-md-center">
+    <div class="col-md-6">
+        <div class="h-100 p-5 text-black bg-light border-4 border-primary rounded">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id:"signup", class: "form-signin"}) do |f| %>
+              <h2 class= "text-center mb-4">Crea tu cuenta Bitty</h2>
 
+                <%= f.input :first_name,
+                            required: true,
+                            autofocus: true,
+                            label: false,
+                            placeholder: "Ingresa tu nombre",
+                            input_html: {id: "name_field"} %>
+                <%= f.input :last_name,
+                            required: true,
+                            label: false,
+                            placeholder: "Ingresa tus apellidos" %>
+                <%= f.input :rfc,
+                            required: true,
+                            label: false,
+                            placeholder: "Ingresa tu RFC" %>
+                <%= f.input :email,
+                            required: true,
+                            label: false,
+                            placeholder: "Ingresa tu correo electrónico",
+                            input_html: { autocomplete: "email" }%>
+                <%= f.input :password,
+                            required: true,
+                            label: false,
+                            placeholder: "Ingresa tu contraseña",
+                            input_html: { autocomplete: "new-password" } %>
+                <%= f.input :password_confirmation,
+                            required: true,
+                            label: false,
+                            placeholder: "Confirma tu contraseña",
+                            input_html: { autocomplete: "new-password" } %>
 
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                label: false,
-                placeholder: "Ingresa tu nombre" %>
-    <%= f.input :last_name,
-                required: true,
-                label: false,
-                placeholder: "Ingresa tus apellidos" %>
-    <%= f.input :rfc,
-                required: true,
-                label: false,
-                placeholder: "Ingresa tu RFC" %>
-    <%= f.input :email,
-                required: true,
-                label: false,
-                placeholder: "Ingresa tu correo electrónico",
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                label: false,
-                placeholder: "Ingresa tu contraseña",
-                
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                label: false,
-                placeholder: "Confirma tu contraseña",
-                input_html: { autocomplete: "new-password" } %>
-
-
-<div class="d-grid gap-2">
-    <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+                <div class="d-grid gap-2">
+                    <%= f.button :submit, "Registrarse", class: "btn btn-primary btn-lg", id: "button_register" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>
 
-<% end %>
 
 
