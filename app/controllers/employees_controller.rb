@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        @office = Employee.select("office_id").last
+        @office = Employee.select("office_id").where("id=?", params[:id]).first
         format.html { redirect_to edit_office_path(@office.office_id), notice: "Employee was successfully updated." }
         format.json { render :show, status: :ok, location: @employee }
       else
